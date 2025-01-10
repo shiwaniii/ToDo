@@ -10,3 +10,24 @@ def todo_delete(request, id):
     todo = Todo.objects.get(id=id)
     todo.delete()
     return HttpResponseRedirect("/")
+
+def todo_create(request):
+    if request.method == "GET":
+        return render(request, "todo_create.html")
+    else:
+        title= request.POST["title"]
+        todo =Todo (title=title)
+        todo.save()
+        return HttpResponseRedirect("/")
+    
+  
+    
+ 
+        def todo_update(request, id):
+            todo = Todo.objects.get(id=id)
+            if request.method == "GET":
+                return render(request, "todo_update.html", {"todo": todo},)
+            else:
+                todo.title = request.POST["title"]
+                todo.save()
+                return HttpResponseRedirect("/")
