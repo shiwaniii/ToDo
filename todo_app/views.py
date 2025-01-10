@@ -11,7 +11,7 @@ def todo_delete(request, id):
     todo.delete()
     return HttpResponseRedirect("/")
 
-def todo_create(request):
+def todo_create(request, id):
     if request.method == "GET":
         return render(request, "todo_create.html")
     else:
